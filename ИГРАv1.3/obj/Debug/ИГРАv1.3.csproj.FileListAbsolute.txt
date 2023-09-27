@@ -1,0 +1,2 @@
+C:\Users\rhali\source\repos\ИГРАv1.3\ИГРАv1.3\obj\Debug\ИГРАv1.3.csproj.AssemblyReference.cache
+C:\Users\rhali\source\repos\ИГРАv1.3\ИГРАv1.3\obj\Debug\ИГРАv1.3.csproj.CoreCompileInputs.cache
