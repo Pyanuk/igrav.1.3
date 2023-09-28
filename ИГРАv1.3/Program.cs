@@ -4,39 +4,55 @@ class Program
 {
     static void Main(string[] args)
     {
-        bool exit = false;
-        while (!exit)
-        {
-            Console.WriteLine("Cалямчики выбери программу:");
-            Console.WriteLine("1. Игра Угадай число");
-            Console.WriteLine("2. Таблица умножения");
-            Console.WriteLine("3. Вывод делителей числа");
-            Console.WriteLine("0. Выход");
+        int choice;
 
-            int choice = int.Parse(Console.ReadLine());
+        do
+        {
+            ShowMenu();
+            choice = GetUserChoice();
 
             switch (choice)
             {
                 case 1:
-                    IGRAYGADAICHICLO();
+                    GuessNumberGame();
                     break;
                 case 2:
-                    TABLISAYMNOLENIA();
+                    MultiplicationTable();
                     break;
                 case 3:
-                    VIVODDELITELEICHICLA();
+                    FactorsOfNumber();
                     break;
-                case 0:
-                    exit = true;
+                case 4:
+                    Console.WriteLine("ПОКАААААААА");
                     break;
                 default:
-                    Console.WriteLine("Неверный выбор!");
+                    Console.WriteLine("Неверный выбор. Пожалуйста, выберите снова.");
                     break;
             }
-        }
+        } while (choice != 4);
     }
 
-    static void IGRAYGADAICHICLO()
+    static void ShowMenu()
+    {
+        Console.WriteLine("САЛАМ АЛЕЙКУМ");
+        Console.WriteLine("Выберите одну из следующих опций:");
+        Console.WriteLine("1. Игра 'Угадай число'");
+        Console.WriteLine("2. Таблица умножения");
+        Console.WriteLine("3. Делители  числа");
+        Console.WriteLine("4. Выход");
+    }
+
+    static int GetUserChoice()
+    {
+        int choice;
+        while (!int.TryParse(Console.ReadLine(), out choice))
+        {
+            Console.WriteLine("Неверный ввод. Пожалуйста, введите число.");
+        }
+        return choice;
+    }
+
+    static void GuessNumberGame()
     {
         Random random = new Random();
         int randomNumber = random.Next(0, 101);
@@ -45,7 +61,10 @@ class Program
         do
         {
             Console.WriteLine("Введите число:");
-            guess = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out guess))
+            {
+                Console.WriteLine("Неверный ввод. Пожалуйста, введите число.");
+            }
 
             if (guess < randomNumber)
             {
@@ -55,13 +74,12 @@ class Program
             {
                 Console.WriteLine("Загаданное число меньше");
             }
-
         } while (guess != randomNumber);
 
         Console.WriteLine("Вы угадали число!");
     }
 
-    static void TABLISAYMNOLENIA()
+    static void MultiplicationTable()
     {
         int[,] multiplicationTable = new int[10, 10];
 
@@ -73,25 +91,30 @@ class Program
             }
         }
 
-        Console.WriteLine("Таблица умножения:");                                                   
+        Console.WriteLine("Таблица умножения:");
+
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
             {
-                Console.Write($"{multiplicationTable[i, j]}\t");
+                Console.Write(multiplicationTable[i, j] + "\t");
             }
             Console.WriteLine();
         }
-
-        Console.WriteLine("Возвращаемся в меню.");
     }
 
-    static void VIVODDELITELEICHICLA()
+    static void FactorsOfNumber()
     {
-        Console.WriteLine("Введите число:");
-        int number = int.Parse(Console.ReadLine());
+        int number;
 
-        Console.WriteLine($"Делители числа {number}:");
+        Console.WriteLine("Введите число:");
+        while (!int.TryParse(Console.ReadLine(), out number))
+        {
+            Console.WriteLine("Неверный ввод. Пожалуйста, введите число.");
+        }
+
+        Console.WriteLine("Делители числа " + number + " :");
+
         for (int i = 1; i <= number; i++)
         {
             if (number % i == 0)
@@ -99,7 +122,5 @@ class Program
                 Console.WriteLine(i);
             }
         }
-
-        Console.WriteLine("Возвращаемся в меню.");
     }
 }
