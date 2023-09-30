@@ -81,23 +81,14 @@ class Program
 
     static void MultiplicationTable()
     {
-        int[,] multiplicationTable = new int[10, 10];
-
-        for (int i = 0; i < 10; i++)
+        int[,] tablica = new int[11, 11];
+        for (int left = 1; left <= 10; left++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int down = 1; down <= 10; down++)
             {
-                multiplicationTable[i, j] = (i + 1) * (j + 1);
-            }
-        }
-
-        Console.WriteLine("Таблица умножения:");
-
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                Console.Write(multiplicationTable[i, j] + "\t");
+                tablica[left, down] = (left) * (down);
+                Console.Write(tablica[left, down]);
+                Console.Write("\t");
             }
             Console.WriteLine();
         }
